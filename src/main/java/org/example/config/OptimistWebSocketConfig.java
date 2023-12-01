@@ -19,6 +19,6 @@ public class OptimistWebSocketConfig extends AbstractWebSocketMessageBrokerConfi
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/stompendpoint").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/stompendpoint").setAllowedOriginPatterns("*").withSockJS();
     }
 }

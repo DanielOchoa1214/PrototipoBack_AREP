@@ -19,10 +19,12 @@ public class Optimist extends StompSessionHandlerAdapter {
     private OptimistService service;
 
     @MessageMapping("/updatePosition.{id}")
-    public void handleUpdatePosition(@DestinationVariable int id, Position position) throws Exception {
-        Position updating = service.getPosition(id);
+    public void handleUpdatePosition(Position position, @DestinationVariable String id) throws Exception {
+        System.out.println(service.getSafePositions());
+        int id1 = Integer.parseInt(id);
+        Position updating = service.getPosition(id1);
         if(updating.checkValidPosition(position)){
-            service.updatePosition(position, id);
+            service.updatePosition(position, id1);
         } else {
             msgt.convertAndSend("/topic/rollback", service.getSafePositions());
         }
