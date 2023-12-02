@@ -20,7 +20,6 @@ public class Optimist extends StompSessionHandlerAdapter {
 
     @MessageMapping("/updatePosition.{id}")
     public void handleUpdatePosition(Position position, @DestinationVariable String id) throws Exception {
-        System.out.println(service.getSafePositions());
         int id1 = Integer.parseInt(id);
         Position updating = service.getPosition(id1);
         if(updating.checkValidPosition(position)){
